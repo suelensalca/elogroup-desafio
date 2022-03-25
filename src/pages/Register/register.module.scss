@@ -1,0 +1,38 @@
+.formContainer {
+  margin: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin: 2.5rem auto;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 30rem;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-primary);
+  font-family: Roboto;
+}
+
+.label {
+  margin: 1rem 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.input {
+  height: 2rem;
+  margin: 0.5rem 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid var(--color-light-gray);
+}
+
+.button {
+  height: 2.5rem;
+  margin: 2rem 0.5rem 0.5rem;
+  background-color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+  font-size: 1rem;
+  color: var(--color-white);
+}
