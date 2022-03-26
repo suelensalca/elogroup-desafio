@@ -9,7 +9,7 @@ export default function Register() {
                     id="emailInput"
                     type="email"
                     className={styles.input}
-                    placeholder="name@example.com"
+                    placeholder="nome@exemplo.com"
                 />
                 <label for="passwordInput" className={styles.label}>Senha</label>
                 <input
