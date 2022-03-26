@@ -4,21 +4,21 @@ export default function Register() {
     return (
         <div className={styles.formContainer}>
             <form className={styles.form}>
-                <label for="emailInput" className={styles.label}>Usuário</label>
+                <label htmlFor="emailInput" className={styles.label}>Usuário</label>
                 <input
                     id="emailInput"
                     type="email"
                     className={styles.input}
                     placeholder="nome@exemplo.com"
                 />
-                <label for="passwordInput" className={styles.label}>Senha</label>
+                <label htmlFor="passwordInput" className={styles.label}>Senha</label>
                 <input
                     id="passwordInput"
                     type="password"
                     className={styles.input}
                     placeholder="password"
                 />
-                <label for="passwordValidation" className={styles.label}>Confirmação de Senha</label>
+                <label htmlFor="passwordValidation" className={styles.label}>Confirmação de Senha</label>
                 <input
                     id="passwordValidation"
                     type="password"
