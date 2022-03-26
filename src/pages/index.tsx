@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Register from './Register'
+import Board from './Board'
 import styles from './home.module.scss'
+import Lead from './Lead'
 
 export default function Home() {
   return (
@@ -8,7 +10,9 @@ export default function Home() {
       <Head>
         <title>EloGroup - Leads</title>
       </Head>
-      <Register />
+      {/* <Register /> */}
+      {/* <Board /> */}
+      <Lead />
     </div>
   )
 }

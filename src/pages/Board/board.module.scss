@@ -1,0 +1,28 @@
+.boardContainer {
+  margin: 3rem 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.buttonContainer {
+  width: 720px;
+  padding: 0 0.5rem;
+  display: flex;
+  justify-content: flex-start;
+
+  button {
+    height: 2.5rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-secondary);
+    border: 1px solid var(--color-secondary);
+    font-size: 1rem;
+    color: var(--color-white);
+  }
+}
+
+.columnContainer {
+  width: 720px;
+  display: flex;
+  justify-content: center;
+}
