@@ -1,6 +1,15 @@
 import styles from './register.module.scss'
 
+import { useRouter } from 'next/router'
+
 export default function Register() {
+    const router = useRouter()
+
+    function handleRegister(e) {
+        e.preventDefault()
+        router.push('/board')
+    }
+
     return (
         <div className={styles.formContainer}>
             <form className={styles.form}>
@@ -28,6 +37,7 @@ export default function Register() {
                 <button
                     type="submit"
                     className={styles.button}
+                    onClick={handleRegister}
                 >
                     Cadastrar
                 </button>

@@ -2,7 +2,7 @@ import Column from './components/Column'
 import styles from './board.module.scss'
 import { useState } from 'react'
 import Modal from 'react-modal'
-import Lead from '../Lead'
+import Lead from '../lead'
 
 export default function Board() {
     const [isNewLeadModalOpen, setIsNewLeadModalOpen] = useState(false);
