@@ -3,6 +3,7 @@ import styles from './lead.module.scss'
 export default function Lead() {
     return (
         <div className={styles.leadContainer}>
+                <h1>Novo Lead</h1>
             <form className={styles.formContainer}>
                 <label htmlFor="nomeInput">Nome</label>
                 <input

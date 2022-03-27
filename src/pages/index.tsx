@@ -11,8 +11,8 @@ export default function Home() {
         <title>EloGroup - Leads</title>
       </Head>
       {/* <Register /> */}
-      {/* <Board /> */}
-      <Lead />
+      <Board />
+      {/* <Lead /> */}
     </div>
   )
 }
