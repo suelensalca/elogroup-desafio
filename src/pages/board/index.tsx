@@ -4,6 +4,8 @@ import { useState } from 'react'
 import Modal from 'react-modal'
 import Lead from '../lead'
 
+Modal.setAppElement('body')
+
 export default function Board() {
     const [isNewLeadModalOpen, setIsNewLeadModalOpen] = useState(false);
 
