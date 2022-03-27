@@ -13,6 +13,13 @@
   background-color: var(--color-white);
   border: 1px solid var(--color-primary);
   font-family: Roboto;
+
+  p {
+    margin: 0 1rem;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--color-red);
+  }
 }
 
 .label {
