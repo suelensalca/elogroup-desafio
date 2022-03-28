@@ -6,7 +6,7 @@
 }
 
 .buttonContainer {
-  width: 720px;
+  width: 45rem;
   padding: 0 0.5rem;
   display: flex;
   justify-content: flex-start;
@@ -22,7 +22,8 @@
 }
 
 .columnContainer {
-  width: 720px;
+  width: 45rem;
+  min-height: 24rem;
   display: flex;
   justify-content: center;
 }

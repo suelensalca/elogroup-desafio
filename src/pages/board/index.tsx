@@ -1,16 +1,22 @@
 import Column from "./components/Column";
 import styles from "./board.module.scss";
-import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import Lead from "../lead";
+import { useState, useEffect, useCallback } from "react";
 import createServer from "../../services/server";
 
 Modal.setAppElement("body");
 
 export default function Board() {
-  const [isNewLeadModalOpen, setIsNewLeadModalOpen] = useState(false);
-  let [leads, setLeads] = useState([]);
   let server = createServer;
+  const [isNewLeadModalOpen, setIsNewLeadModalOpen] = useState(false);
+  let [boards, setBoards] = useState([]);
+  let [updatedLead, setUpdatedLead] = useState({});
+
+  let dropCallback = useCallback((lead) => {
+    console.log(lead);
+    setUpdatedLead(updatedLead);
+  }, []);
 
   function handleOpenNewLeadModal() {
     setIsNewLeadModalOpen(true);
@@ -21,10 +27,10 @@ export default function Board() {
   }
 
   useEffect(() => {
-    fetch("/api/leads")
+    fetch("/api/boards")
       .then((res) => res.json())
       .then((json) => {
-        setLeads(json);
+        setBoards(json);
       });
   }, []);
 
@@ -36,8 +42,8 @@ export default function Board() {
         </button>
       </div>
       <div className={styles.columnContainer}>
-        {leads.map((lead) => (
-          <Column key={lead.title} data={lead} />
+        {boards.map((board) => (
+          <Column key={board.title} data={board} dropCallback={dropCallback} />
         ))}
       </div>
       <Modal

@@ -13,6 +13,11 @@
   cursor: grab;
 }
 
+.cardDragging {
+  border: 2px dashed var(--color-light-gray);
+  opacity: 0.5;
+}
+
 .cardTitle {
   padding: 0.5rem;
   font-size: 1rem;
