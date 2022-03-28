@@ -14,8 +14,7 @@ export default function Board() {
   let [updatedLead, setUpdatedLead] = useState({});
 
   let dropCallback = useCallback((lead) => {
-    console.log(lead);
-    setUpdatedLead(updatedLead);
+    setUpdatedLead(lead);
   }, []);
 
   function handleOpenNewLeadModal() {
@@ -32,7 +31,7 @@ export default function Board() {
       .then((json) => {
         setBoards(json);
       });
-  }, []);
+  }, [updatedLead]);
 
   return (
     <div className={styles.boardContainer}>

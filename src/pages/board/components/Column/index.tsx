@@ -12,7 +12,7 @@ export default function Column({ data, dropCallback }) {
       .then((json) => {
         setLeads(json.leads ?? []);
       });
-  }, []);
+  }, [data]);
 
   const [{ isOver }, dropRef] = useDrop(() => ({
     accept: "CARD",
@@ -38,11 +38,11 @@ export default function Column({ data, dropCallback }) {
   };
 
   return (
-    <div className={styles.columnContainer}>
+    <div className={styles.columnContainer} ref={dropRef}>
       <header className={styles.title}>
         <h3>{data.title}</h3>
       </header>
-      <ul ref={dropRef}>
+      <ul>
         {leads.map((lead) => (
           <Card key={lead.id} data={lead} />
         ))}
