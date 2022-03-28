@@ -26,26 +26,28 @@ export default function Lead() {
             </form>
             <div className={styles.tableContainer}>
                 <table>
-                    <tr>
-                        <th><input type="checkbox"></input></th>
-                        <th>Oportunidades</th>
-                    </tr>
-                    <tr>
-                        <td className={styles.checkbox}><input type="checkbox"></input></td>
-                        <td>RPA</td>
-                    </tr>
-                    <tr>
-                        <td className={styles.checkbox}><input type="checkbox"></input></td>
-                        <td>Produto Digital</td>
-                    </tr>
-                    <tr>
-                        <td className={styles.checkbox}><input type="checkbox"></input></td>
-                        <td>Analytics</td>
-                    </tr>
-                    <tr>
-                        <td className={styles.checkbox}><input type="checkbox"></input></td>
-                        <td>BPM</td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <th><input type="checkbox"></input></th>
+                            <th>Oportunidades</th>
+                        </tr>
+                        <tr>
+                            <td className={styles.checkbox}><input type="checkbox"></input></td>
+                            <td>RPA</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.checkbox}><input type="checkbox"></input></td>
+                            <td>Produto Digital</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.checkbox}><input type="checkbox"></input></td>
+                            <td>Analytics</td>
+                        </tr>
+                        <tr>
+                            <td className={styles.checkbox}><input type="checkbox"></input></td>
+                            <td>BPM</td>
+                        </tr>
+                    </tbody>
                 </table>
                 <button
                     type="submit"
