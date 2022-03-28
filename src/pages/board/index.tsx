@@ -1,52 +1,65 @@
-import Column from './components/Column'
-import styles from './board.module.scss'
-import { useState } from 'react'
-import Modal from 'react-modal'
-import Lead from '../lead'
+import Column from "./components/Column";
+import styles from "./board.module.scss";
+import Modal from "react-modal";
+import Lead from "../lead";
+import { useState, useEffect, useCallback } from "react";
+import createServer from "../../services/server";
 
-Modal.setAppElement('body')
+Modal.setAppElement("body");
 
 export default function Board() {
-    const [isNewLeadModalOpen, setIsNewLeadModalOpen] = useState(false);
+  let server = createServer;
+  const [isNewLeadModalOpen, setIsNewLeadModalOpen] = useState(false);
+  let [boards, setBoards] = useState([]);
+  let [updatedLead, setUpdatedLead] = useState({});
 
-    function handleOpenNewLeadModal() {
-        setIsNewLeadModalOpen(true);
-    }
+  let dropCallback = useCallback((lead) => {
+    setUpdatedLead(lead);
+  }, []);
 
-    function handleCloseNewLeadModal() {
-        setIsNewLeadModalOpen(false);
-    }
+  function handleOpenNewLeadModal() {
+    setIsNewLeadModalOpen(true);
+  }
 
-    return (
-        <div className={styles.boardContainer}>
-            <div className={styles.buttonContainer}>
-                <button
-                    type="button"
-                    onClick={handleOpenNewLeadModal}
-                >
-                    Novo Lead
-                </button>
-            </div>
-            <div className ={styles.columnContainer}>
-                <Column />
-                <Column />
-                <Column />
-            </div>
-            <Modal
-                isOpen={isNewLeadModalOpen}
-                onRequestClose={handleCloseNewLeadModal}
-                overlayClassName="react-modal-overlay"
-                className="reactModal"
-            >
-                <button
-                    type="button"
-                    onClick={handleCloseNewLeadModal}
-                    className={styles.modalButton}
-                >
-                    &#10005;
-                </button>
-                <Lead />
-            </Modal>
-        </div>
-    )
+  function handleCloseNewLeadModal() {
+    setIsNewLeadModalOpen(false);
+  }
+
+  useEffect(() => {
+    fetch("/api/boards")
+      .then((res) => res.json())
+      .then((json) => {
+        setBoards(json);
+      });
+  }, [updatedLead]);
+
+  return (
+    <div className={styles.boardContainer}>
+      <div className={styles.buttonContainer}>
+        <button type="button" onClick={handleOpenNewLeadModal}>
+          Novo Lead
+        </button>
+      </div>
+      <div className={styles.columnContainer}>
+        {boards.map((board) => (
+          <Column key={board.title} data={board} dropCallback={dropCallback} />
+        ))}
+      </div>
+      <Modal
+        isOpen={isNewLeadModalOpen}
+        onRequestClose={handleCloseNewLeadModal}
+        overlayClassName="react-modal-overlay"
+        className="reactModal"
+      >
+        <button
+          type="button"
+          onClick={handleCloseNewLeadModal}
+          className={styles.modalButton}
+        >
+          &#10005;
+        </button>
+        <Lead />
+      </Modal>
+    </div>
+  );
 }

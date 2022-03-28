@@ -24,8 +24,6 @@ export default function Register() {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
-
         localStorage.setItem("@elogroup/user/id", json.user.id);
         localStorage.setItem("@elogroup/user/email", json.user.email);
         localStorage.setItem("@elogroup/user/password", json.user.password);
