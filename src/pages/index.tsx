@@ -1,6 +1,10 @@
-import Head from 'next/head'
-import Register from './register'
-import styles from './home.module.scss'
+import Head from "next/head";
+import Register from "./register";
+import styles from "./home.module.scss";
+
+import createServer from "../services/server";
+
+let server = createServer;
 
 export default function Home() {
   return (
@@ -10,5 +14,5 @@ export default function Home() {
       </Head>
       <Register />
     </div>
-  )
+  );
 }
