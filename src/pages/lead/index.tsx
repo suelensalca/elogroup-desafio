@@ -24,6 +24,7 @@ export default function Lead({ data, boardCallback }) {
     })
       .then((res) => res.json())
       .then((json) => {
+        localStorage.setItem(`@elogroup/lead/${json.lead.id}/id`, json.lead.id);
         localStorage.setItem(
           `@elogroup/lead/${json.lead.id}/name`,
           json.lead.name
@@ -56,13 +57,30 @@ export default function Lead({ data, boardCallback }) {
           `@elogroup/lead/${json.lead.id}/status`,
           json.lead.status
         );
-
+        alert("Lead incluído com sucesso!");
         boardCallback(json.lead);
       });
   };
   const onError = (errors, e) => {
     console.log(errors, e);
   };
+
+  function checkAll(e) {
+    let inputs = document.getElementsByTagName("input");
+    if (e.target.checked) {
+      for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].type == "checkbox") {
+          inputs[i].checked = true;
+        }
+      }
+    } else {
+      for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].type == "checkbox") {
+          inputs[i].checked = false;
+        }
+      }
+    }
+  }
   return (
     <div className={styles.leadContainer}>
       <h1>Novo Lead</h1>
@@ -113,7 +131,7 @@ export default function Lead({ data, boardCallback }) {
             <tbody>
               <tr>
                 <th>
-                  <input type="checkbox"></input>
+                  <input onChange={checkAll} type="checkbox"></input>
                 </th>
                 <th>Oportunidades</th>
               </tr>

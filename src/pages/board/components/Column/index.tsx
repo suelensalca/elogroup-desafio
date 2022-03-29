@@ -23,6 +23,10 @@ export default function Column({ data, boardCallback }) {
     let currentStatus = item.status;
     let nextStatus = data.status;
 
+    if (nextStatus - currentStatus !== 1) {
+      return;
+    }
+
     fetch(`/api/leads/${item.id}`, {
       method: "PATCH",
       headers: {
