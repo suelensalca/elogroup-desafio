@@ -16,6 +16,18 @@
   }
 }
 
+.modalFormContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  p {
+    margin: 0 1rem;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--color-red);
+  }
+}
+
 .formContainer {
   display: flex;
   flex-direction: column;

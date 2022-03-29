@@ -22,7 +22,6 @@ export default function Card({ data }) {
       ref={dragRef}
     >
       <p className={styles.cardTitle}>{data.name}</p>
-      <p className={styles.cardTitle}>{data.status}</p>
     </li>
   );
 }
