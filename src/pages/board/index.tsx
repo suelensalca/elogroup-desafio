@@ -13,8 +13,9 @@ export default function Board() {
   let [boards, setBoards] = useState([]);
   let [updatedLead, setUpdatedLead] = useState({});
 
-  let dropCallback = useCallback((lead) => {
+  let boardCallback = useCallback((lead) => {
     setUpdatedLead(lead);
+    handleCloseNewLeadModal();
   }, []);
 
   function handleOpenNewLeadModal() {
@@ -42,7 +43,11 @@ export default function Board() {
       </div>
       <div className={styles.columnContainer}>
         {boards.map((board) => (
-          <Column key={board.title} data={board} dropCallback={dropCallback} />
+          <Column
+            key={board.title}
+            data={board}
+            boardCallback={boardCallback}
+          />
         ))}
       </div>
       <Modal
@@ -58,7 +63,7 @@ export default function Board() {
         >
           &#10005;
         </button>
-        <Lead />
+        <Lead boardCallback={boardCallback} />
       </Modal>
     </div>
   );

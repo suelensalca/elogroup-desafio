@@ -54,6 +54,12 @@ export const api = createServer({
       return lead;
     });
 
+    this.post("/api/leads", (schema, request) => {
+      let attrs = JSON.parse(request.requestBody);
+      attrs.status = 0;
+      return schema.leads.create(attrs);
+    });
+
     this.namespace = "";
     this.passthrough();
   },
@@ -61,8 +67,8 @@ export const api = createServer({
   seeds(server) {
     server.create("lead", {
       status: 1,
-      name: "Empresa 1",
-      telefone: "(00)0000-0000",
+      name: "Org. Internacionais",
+      phone: "(00)0000-0000",
       email: "exemplo@email.com",
       rpa: false,
       digitalproduct: false,
@@ -71,8 +77,8 @@ export const api = createServer({
     });
     server.create("lead", {
       status: 1,
-      name: "Empresa 2",
-      telefone: "(00)0000-0000",
+      name: "Ind. Farm. LTDA",
+      phone: "(00)0000-0000",
       email: "exemplo@email.com",
       rpa: false,
       digitalproduct: false,
@@ -81,8 +87,8 @@ export const api = createServer({
     });
     server.create("lead", {
       status: 2,
-      name: "Empresa 3",
-      telefone: "(00)0000-0000",
+      name: "Sound Live Company",
+      phone: "(00)0000-0000",
       email: "exemplo@email.com",
       rpa: false,
       digitalproduct: false,

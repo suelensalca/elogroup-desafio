@@ -3,7 +3,7 @@ import { useDrop } from "react-dnd";
 import { useState, useEffect } from "react";
 import styles from "./column.module.scss";
 
-export default function Column({ data, dropCallback }) {
+export default function Column({ data, boardCallback }) {
   let [leads, setLeads] = useState([]);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function Column({ data, dropCallback }) {
     })
       .then((res) => res.json())
       .then((json) => {
-        dropCallback(json);
+        boardCallback(json);
       });
   };
 
