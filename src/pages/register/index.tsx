@@ -24,9 +24,15 @@ export default function Register() {
     })
       .then((res) => res.json())
       .then((json) => {
-        localStorage.setItem("@elogroup/user/id", json.user.id);
-        localStorage.setItem("@elogroup/user/email", json.user.email);
-        localStorage.setItem("@elogroup/user/password", json.user.password);
+        localStorage.setItem(`@elogroup/user/${json.user.id}/id`, json.user.id);
+        localStorage.setItem(
+          `@elogroup/user/${json.user.id}/email`,
+          json.user.email
+        );
+        localStorage.setItem(
+          `@elogroup/user/${json.user.id}/password`,
+          json.user.password
+        );
 
         router.push("/board");
       });
