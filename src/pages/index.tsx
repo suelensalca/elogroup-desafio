@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className={styles.bg}>
       <Head>
-        <title>EloGroup - Leads</title>
+        <title>ALLtech - Leads</title>
       </Head>
       <Register />
     </div>
