@@ -3,8 +3,25 @@ import { useDrop } from "react-dnd";
 import { useState, useEffect } from "react";
 import styles from "./column.module.scss";
 
-export default function Column({ data, boardCallback }) {
-  let [leads, setLeads] = useState([]);
+interface boardModel {
+  id: number;
+  title: string;
+  status: number;
+}
+
+interface leadModel {
+  id: number;
+  status: number;
+  name: string;
+}
+
+interface columnProps {
+  data: boardModel;
+  boardCallback: (item: any) => void;
+}
+
+export default function Column({ data, boardCallback }: columnProps) {
+  let [leads, setLeads] = useState<leadModel[]>([]);
 
   useEffect(() => {
     fetch(`/api/leads/${data.status}`)
@@ -14,12 +31,12 @@ export default function Column({ data, boardCallback }) {
       });
   }, [data]);
 
-  const [{ isOver }, dropRef] = useDrop(() => ({
+  const [, dropRef] = useDrop(() => ({
     accept: "CARD",
-    drop: (item) => moveCard(item, data),
+    drop: (item: boardModel) => moveCard(item, data),
   }));
 
-  const moveCard = (item, data) => {
+  const moveCard = (item: boardModel, data: boardModel) => {
     let currentStatus = item.status;
     let nextStatus = data.status;
 

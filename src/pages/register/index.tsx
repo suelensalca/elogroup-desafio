@@ -1,6 +1,13 @@
 import { useRouter } from "next/router";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "./register.module.scss";
+
+type FormValues = {
+  id: number;
+  email: string;
+  password: string;
+  passwordValidation: string;
+};
 
 export default function Register() {
   const router = useRouter();
@@ -11,9 +18,9 @@ export default function Register() {
     formState: { errors },
     getValues,
     trigger,
-  } = useForm();
+  } = useForm<FormValues>();
 
-  const onSubmit = (data, e) => {
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
     fetch("/api/users", {
       method: "POST",
       headers: {
@@ -37,13 +44,10 @@ export default function Register() {
         router.push("/board");
       });
   };
-  const onError = (errors, e) => {
-    console.log(errors, e);
-  };
 
   return (
     <div className={styles.formContainer}>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit, onError)}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="emailInput" className={styles.label}>
           Usuário
         </label>

@@ -1,9 +1,17 @@
 import styles from "./card.module.scss";
-import { useDrag, useDrop } from "react-dnd";
-import { useRef } from "react";
-import Lead from "../../../lead";
+import { useDrag } from "react-dnd";
 
-export default function Card({ data }) {
+interface cardData {
+  id: number;
+  status: number;
+  name: string;
+}
+
+interface cardProps {
+  data: cardData;
+}
+
+export default function Card({ data }: cardProps) {
   const [{ isDragging }, dragRef] = useDrag(() => ({
     type: "CARD",
     item: data,
