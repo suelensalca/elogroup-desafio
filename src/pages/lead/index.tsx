@@ -1,19 +1,35 @@
 import styles from "./lead.module.scss";
-import { useForm } from "react-hook-form";
-import createServer from "../../services/server";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { api } from "../../services/server";
+import React from "react";
 
-let server = createServer;
+let server = api;
 
-export default function Lead({ data, boardCallback }) {
+interface LeadProps {
+  boardCallback: (item: any) => void;
+}
+
+type FormValues = {
+  id: number;
+  status: number;
+  name: string;
+  phone: string;
+  email: string;
+  rpa: boolean;
+  digitalproduct: boolean;
+  analytics: boolean;
+  bpm: boolean;
+};
+
+export default function Lead({ boardCallback }: LeadProps) {
   const {
     register,
     handleSubmit,
-    getValues,
     trigger,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormValues>();
 
-  const onSubmit = (data, e) => {
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
     fetch("/api/leads", {
       method: "POST",
       headers: {
@@ -61,11 +77,8 @@ export default function Lead({ data, boardCallback }) {
         boardCallback(json.lead);
       });
   };
-  const onError = (errors, e) => {
-    console.log(errors, e);
-  };
 
-  function checkAll(e) {
+  function checkAll(e: React.BaseSyntheticEvent) {
     let inputs = document.getElementsByTagName("input");
     if (e.target.checked) {
       for (let i = 0; i < inputs.length; i++) {
@@ -86,7 +99,7 @@ export default function Lead({ data, boardCallback }) {
       <h1>Novo Lead</h1>
       <form
         className={styles.modalFormContainer}
-        onSubmit={handleSubmit(onSubmit, onError)}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <div className={styles.formContainer}>
           <label htmlFor="nomeInput">Nome</label>

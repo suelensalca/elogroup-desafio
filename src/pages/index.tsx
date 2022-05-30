@@ -2,9 +2,9 @@ import Head from "next/head";
 import Register from "./register";
 import styles from "./home.module.scss";
 
-import createServer from "../services/server";
+import { api } from "../services/server";
 
-let server = createServer;
+let server = api;
 
 export default function Home() {
   return (

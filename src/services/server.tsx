@@ -1,23 +1,61 @@
-import { createServer, Model } from "miragejs";
+import { createServer, Model, Registry, Server } from "miragejs";
+import { ModelDefinition } from "miragejs/-types";
+import Schema from "miragejs/orm/schema";
+
+type User = {
+  id: number;
+  email: string;
+  password: string;
+};
+
+type Lead = {
+  status: number;
+  name: string;
+  phone: string;
+  email: string;
+  rpa: boolean;
+  digitalproduct: boolean;
+  analytics: boolean;
+  bpm: boolean;
+};
+
+type Board = {
+  title: string;
+  status: number;
+};
+
+const UserModel: ModelDefinition<User> = Model.extend({});
+const LeadModel: ModelDefinition<Lead> = Model.extend({});
+const BoardModel: ModelDefinition<Board> = Model.extend({});
+
+type AppRegistry = Registry<
+  {
+    user: typeof UserModel;
+    lead: typeof LeadModel;
+    board: typeof BoardModel;
+  },
+  {}
+>;
+type AppSchema = Schema<AppRegistry>;
 
 export const api = createServer({
   models: {
-    user: Model,
-    lead: Model,
-    board: Model,
+    user: UserModel,
+    lead: LeadModel,
+    board: BoardModel,
   },
 
   routes() {
-    this.get("/api/users", (schema) => {
-      return schema.users.all();
+    this.get("/api/users", (schema: AppSchema) => {
+      return schema.all("user");
     });
 
-    this.post("/api/users", (schema, request) => {
+    this.post("/api/users", (schema: AppSchema, request) => {
       let attrs = JSON.parse(request.requestBody);
-      return schema.users.create(attrs);
+      return schema.create("user", attrs);
     });
 
-    this.get("/api/boards", (schema) => {
+    this.get("/api/boards", (schema: AppSchema) => {
       return [
         {
           title: "Cliente em Potencial",
@@ -34,37 +72,37 @@ export const api = createServer({
       ];
     });
 
-    this.get("/api/leads/", (schema) => {
-      return schema.leads.all();
+    this.get("/api/leads/", (schema: AppSchema) => {
+      return schema.all("lead");
     });
 
-    this.get("/api/leads/:status", (schema, request) => {
-      let status = request.params.status;
+    this.get("/api/leads/:status", (schema: AppSchema, request) => {
+      let status = Number(request.params.status);
 
-      return schema.leads.where({ status: status });
+      return schema.where("lead", { status: status });
     });
 
-    this.patch("/api/leads/:id", (schema, request) => {
+    this.patch("/api/leads/:id", (schema: AppSchema, request) => {
       let attrs = JSON.parse(request.requestBody);
       let id = request.params.id;
 
-      let lead = schema.leads.find(id);
-      lead.update("status", attrs.status);
+      let lead = schema.find("lead", id);
+      lead?.update("status", attrs.status);
 
       return lead;
     });
 
-    this.post("/api/leads", (schema, request) => {
+    this.post("/api/leads", (schema: AppSchema, request) => {
       let attrs = JSON.parse(request.requestBody);
       attrs.status = 0;
-      return schema.leads.create(attrs);
+      return schema.create("lead", attrs);
     });
 
     this.namespace = "";
     this.passthrough();
   },
 
-  seeds(server) {
+  seeds(server: Server<AppRegistry>) {
     server.create("lead", {
       status: 1,
       name: "Org. Internacionais",
