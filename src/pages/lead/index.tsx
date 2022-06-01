@@ -2,6 +2,7 @@ import styles from "./lead.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { api } from "../../services/server";
 import React from "react";
+import LeadModel from "../../models/lead.model";
 
 let server = api;
 
@@ -9,27 +10,15 @@ interface LeadProps {
   boardCallback: (item: any) => void;
 }
 
-type FormValues = {
-  id: number;
-  status: number;
-  name: string;
-  phone: string;
-  email: string;
-  rpa: boolean;
-  digitalproduct: boolean;
-  analytics: boolean;
-  bpm: boolean;
-};
-
 export default function Lead({ boardCallback }: LeadProps) {
   const {
     register,
     handleSubmit,
     trigger,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<LeadModel>();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<LeadModel> = (data) => {
     fetch("/api/leads", {
       method: "POST",
       headers: {

@@ -1,32 +1,13 @@
 import { createServer, Model, Registry, Server } from "miragejs";
 import { ModelDefinition } from "miragejs/-types";
 import Schema from "miragejs/orm/schema";
+import BoardModel from "../models/board.model";
+import UserModel from "../models/user.model";
+import LeadModel from "../models/lead.model";
 
-type User = {
-  id: number;
-  email: string;
-  password: string;
-};
-
-type Lead = {
-  status: number;
-  name: string;
-  phone: string;
-  email: string;
-  rpa: boolean;
-  digitalproduct: boolean;
-  analytics: boolean;
-  bpm: boolean;
-};
-
-type Board = {
-  title: string;
-  status: number;
-};
-
-const UserModel: ModelDefinition<User> = Model.extend({});
-const LeadModel: ModelDefinition<Lead> = Model.extend({});
-const BoardModel: ModelDefinition<Board> = Model.extend({});
+const UserModel: ModelDefinition<UserModel> = Model.extend({});
+const LeadModel: ModelDefinition<LeadModel> = Model.extend({});
+const BoardModel: ModelDefinition<BoardModel> = Model.extend({});
 
 type AppRegistry = Registry<
   {
