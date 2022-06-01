@@ -1,14 +1,9 @@
 import styles from "./card.module.scss";
 import { useDrag } from "react-dnd";
-
-interface cardData {
-  id: number;
-  status: number;
-  name: string;
-}
+import LeadModel from "../../../../models/lead.model";
 
 interface cardProps {
-  data: cardData;
+  data: LeadModel;
 }
 
 export default function Card({ data }: cardProps) {

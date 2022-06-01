@@ -4,19 +4,14 @@ import Modal from "react-modal";
 import Lead from "../lead";
 import { useState, useEffect, useCallback } from "react";
 import { api } from "../../services/server";
+import BoardModel from "../../models/board.model";
 
 Modal.setAppElement("body");
 
-interface boardProps {
-  id: number;
-  title: string;
-  status: number;
-}
-
-export default function Board(board: boardProps) {
+export default function Board() {
   let server = api;
   const [isNewLeadModalOpen, setIsNewLeadModalOpen] = useState(false);
-  let [boards, setBoards] = useState([]);
+  let [boards, setBoards] = useState<BoardModel[]>([]);
   let [updatedLead, setUpdatedLead] = useState({});
 
   let boardCallback = useCallback((lead) => {
@@ -48,7 +43,7 @@ export default function Board(board: boardProps) {
         </button>
       </div>
       <div className={styles.columnContainer}>
-        {boards.map((board: boardProps) => (
+        {boards.map((board) => (
           <Column
             key={board.title}
             data={board}
