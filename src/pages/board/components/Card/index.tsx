@@ -24,7 +24,7 @@ export default function Card({ data }: cardProps) {
       }
       ref={dragRef}
     >
-      <p className={styles.cardTitle}>{data.name}</p>
+      <p className={styles.cardTitle}>{data?.name}</p>
     </li>
   );
 }

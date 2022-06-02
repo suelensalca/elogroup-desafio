@@ -51,7 +51,7 @@ export default function Column({ data, boardCallback }: columnProps) {
   return (
     <div className={styles.columnContainer} ref={dropRef}>
       <header className={styles.title}>
-        <h3>{data.title}</h3>
+        <h3>{data?.title}</h3>
       </header>
       <ul>
         {leads.map((lead) => (
